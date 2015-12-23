@@ -1,0 +1,12 @@
+﻿Build started 9/21/2015 1:25:26 PM.
+     1>Project "E:\GitHub\speex\win32\VS2008\tests\testenc_uwb.vcxproj" on node 4 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (testdenoise.vcxproj, testecho.vcxproj, testenc.vcxproj, testenc_wb.vcxproj, testresample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\include /I..\.. /Zi /nologo /W3 /WX- /Ox /Ob2 /Oi /Ot /GL /D WIN32 /D NDEBUG /D _CONSOLE /D HAVE_CONFIG_H /D _VC80_UPGRADE=0x0710 /D _MBCS /GF /Gm- /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TC /errorReport:prompt ..\..\..\libspeex\testenc_uwb.c
+         testenc_uwb.c
+     1>..\..\..\libspeex\testenc_uwb.c : fatal error C1041: cannot open program database 'e:\github\speex\win32\vs2008\tests\x64\release\vc120.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
+     1>Done Building Project "E:\GitHub\speex\win32\VS2008\tests\testenc_uwb.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.07

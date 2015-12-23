@@ -1,0 +1,107 @@
+﻿Build started 9/21/2015 2:08:00 PM.
+     1>Project "E:\xio6\XIO\Plugins\VoiceActivityDetection\Thirdparty\speex\win32\VS2008\libspeex\libspeex.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\include /I..\.. /Zi /nologo /W4 /WX- /Ox /Ob2 /Oi /Ot /GL /D WIN32 /D NDEBUG /D _LIB /D HAVE_CONFIG_H /D _VC80_UPGRADE=0x0710 /D _MBCS /GF /Gm- /MT /GS- /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TC /wd4244 /wd4305 /wd4311 /wd4100 /wd4127 /errorReport:prompt ..\..\..\libspeex\bits.c ..\..\..\libspeex\cb_search.c ..\..\..\libspeex\exc_10_16_table.c ..\..\..\libspeex\exc_10_32_table.c ..\..\..\libspeex\exc_20_32_table.c ..\..\..\libspeex\exc_5_256_table.c ..\..\..\libspeex\exc_5_64_table.c ..\..\..\libspeex\exc_8_128_table.c ..\..\..\libspeex\fftwrap.c ..\..\..\libspeex\filterbank.c ..\..\..\libspeex\filters.c ..\..\..\libspeex\gain_table.c ..\..\..\libspeex\gain_table_lbr.c ..\..\..\libspeex\hexc_10_32_table.c ..\..\..\libspeex\hexc_table.c ..\..\..\libspeex\high_lsp_tables.c ..\..\..\libspeex\jitter.c ..\..\..\libspeex\kiss_fft.c ..\..\..\libspeex\kiss_fftr.c ..\..\..\libspeex\lpc.c ..\..\..\libspeex\lsp.c ..\..\..\libspeex\lsp_tables_nb.c ..\..\..\libspeex\ltp.c ..\..\..\libspeex\mdf.c ..\..\..\libspeex\modes.c ..\..\..\libspeex\modes_wb.c ..\..\..\libspeex\nb_celp.c ..\..\..\libspeex\preprocess.c ..\..\..\libspeex\quant_lsp.c ..\..\..\libspeex\resample.c ..\..\..\libspeex\sb_celp.c ..\..\..\libspeex\smallft.c ..\..\..\libspeex\speex.c ..\..\..\libspeex\speex_callbacks.c ..\..\..\libspeex\speex_header.c ..\..\..\libspeex\stereo.c ..\..\..\libspeex\vbr.c ..\..\..\libspeex\vq.c ..\..\..\libspeex\window.c
+         bits.c
+         cb_search.c
+         exc_10_16_table.c
+         exc_10_32_table.c
+         exc_20_32_table.c
+         exc_5_256_table.c
+         exc_5_64_table.c
+         exc_8_128_table.c
+         fftwrap.c
+         filterbank.c
+         filters.c
+         gain_table.c
+         gain_table_lbr.c
+         hexc_10_32_table.c
+         hexc_table.c
+         high_lsp_tables.c
+         jitter.c
+     1>..\..\..\libspeex\jitter.c(447): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\jitter.c(696): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\jitter.c(806): warning C4055: 'type cast' : from data pointer 'void *' to function pointer 'void (__cdecl *)(void *)'
+         kiss_fft.c
+     1>..\..\..\libspeex\kiss_fft.c(311): warning C4267: '+=' : conversion from 'size_t' to 'int', possible loss of data
+     1>..\..\..\libspeex\kiss_fft.c(416): warning C4267: 'function' : conversion from 'size_t' to 'int', possible loss of data
+     1>..\..\..\libspeex\kiss_fft.c(471): warning C4267: 'function' : conversion from 'size_t' to 'int', possible loss of data
+         kiss_fftr.c
+     1>..\..\..\libspeex\kiss_fftr.c(48): warning C4267: 'function' : conversion from 'size_t' to 'int', possible loss of data
+         lpc.c
+         Compiling...
+         lsp.c
+         lsp_tables_nb.c
+         ltp.c
+         mdf.c
+         modes.c
+         modes_wb.c
+         nb_celp.c
+         preprocess.c
+         quant_lsp.c
+         resample.c
+     1>..\..\..\libspeex\resample.c(595): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(676): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(684): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(687): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(694): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(860): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(863): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(916): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(923): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\..\libspeex\resample.c(933): warning C4018: '<' : signed/unsigned mismatch
+         sb_celp.c
+         smallft.c
+         speex.c
+         speex_callbacks.c
+         speex_header.c
+         stereo.c
+         vbr.c
+         vq.c
+         window.c
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\Lib.exe /OUT:"E:\xio6\XIO\Plugins\VoiceActivityDetection\Thirdparty\speex\win32\VS2008\x64\Release\libspeex.lib" /NOLOGO /MACHINE:X64 /LTCG x64\Release\bits.obj
+         x64\Release\cb_search.obj
+         x64\Release\exc_10_16_table.obj
+         x64\Release\exc_10_32_table.obj
+         x64\Release\exc_20_32_table.obj
+         x64\Release\exc_5_256_table.obj
+         x64\Release\exc_5_64_table.obj
+         x64\Release\exc_8_128_table.obj
+         x64\Release\fftwrap.obj
+         x64\Release\filterbank.obj
+         x64\Release\filters.obj
+         x64\Release\gain_table.obj
+         x64\Release\gain_table_lbr.obj
+         x64\Release\hexc_10_32_table.obj
+         x64\Release\hexc_table.obj
+         x64\Release\high_lsp_tables.obj
+         x64\Release\jitter.obj
+         x64\Release\kiss_fft.obj
+         x64\Release\kiss_fftr.obj
+         x64\Release\lpc.obj
+         x64\Release\lsp.obj
+         x64\Release\lsp_tables_nb.obj
+         x64\Release\ltp.obj
+         x64\Release\mdf.obj
+         x64\Release\modes.obj
+         x64\Release\modes_wb.obj
+         x64\Release\nb_celp.obj
+         x64\Release\preprocess.obj
+         x64\Release\quant_lsp.obj
+         x64\Release\resample.obj
+         x64\Release\sb_celp.obj
+         x64\Release\smallft.obj
+         x64\Release\speex.obj
+         x64\Release\speex_callbacks.obj
+         x64\Release\speex_header.obj
+         x64\Release\stereo.obj
+         x64\Release\vbr.obj
+         x64\Release\vq.obj
+         x64\Release\window.obj
+         libspeex.vcxproj -> E:\xio6\XIO\Plugins\VoiceActivityDetection\Thirdparty\speex\win32\VS2008\x64\Release\libspeex.lib
+     1>Done Building Project "E:\xio6\XIO\Plugins\VoiceActivityDetection\Thirdparty\speex\win32\VS2008\libspeex\libspeex.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.70

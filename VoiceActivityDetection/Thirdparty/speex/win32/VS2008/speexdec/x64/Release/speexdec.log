@@ -1,0 +1,13 @@
+﻿Build started 9/21/2015 1:25:26 PM.
+     1>Project "E:\GitHub\speex\win32\VS2008\speexdec\speexdec.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\include /I..\..\..\..\libogg\include /I..\..\..\libspeex /I..\.. /Zi /nologo /W3 /WX- /Ox /Ob2 /Oi /Ot /GL /D WIN32 /D NDEBUG /D _CONSOLE /D HAVE_CONFIG_H /D _VC80_UPGRADE=0x0710 /D _MBCS /GF /Gm- /MT /GS- /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TC /errorReport:prompt ..\..\..\src\skeleton.c ..\..\..\src\speexdec.c
+         skeleton.c
+     1>..\..\..\src\skeleton.c(10): fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+         speexdec.c
+     1>..\..\..\src\speexdec.c(50): fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+     1>Done Building Project "E:\GitHub\speex\win32\VS2008\speexdec\speexdec.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.15

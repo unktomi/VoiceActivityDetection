@@ -1,0 +1,13 @@
+﻿Build started 9/21/2015 1:25:25 PM.
+     1>Project "E:\GitHub\speex\win32\VS2008\tests\testdenoise.vcxproj" on node 3 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (testecho.vcxproj, testenc.vcxproj, testenc_uwb.vcxproj, testenc_wb.vcxproj, testresample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(E:\GitHub\speex\win32\VS2008\x64\Release\testdenoise.exe) does not match the Linker's OutputFile property value (E:\GitHub\speex\bin\testdenoise.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"../../../bin/testdenoise.exe" /INCREMENTAL:NO /NOLOGO winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\GitHub\speex\win32\VS2008\x64\Release\testdenoise.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"E:\GitHub\speex\win32\VS2008\x64\Release\testdenoise.lib" /MACHINE:X64 x64\Release\testdenoise.obj
+         E:\GitHub\speex\lib\libspeexdsp.lib
+     1>LINK : fatal error LNK1181: cannot open input file 'E:\GitHub\speex\lib\libspeexdsp.lib'
+     1>Done Building Project "E:\GitHub\speex\win32\VS2008\tests\testdenoise.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.15
