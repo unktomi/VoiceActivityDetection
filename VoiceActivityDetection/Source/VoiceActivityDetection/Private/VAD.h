@@ -91,4 +91,5 @@ private:
 	uint32 Channels;
 	uint32 SamplesPerSecond;
 	FCriticalSection CriticalSection;
+	double LastActiveTime;
 };

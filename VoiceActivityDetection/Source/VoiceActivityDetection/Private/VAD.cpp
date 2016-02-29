@@ -8,6 +8,7 @@
 #include "speex/speex_resampler.h"
 #include <stdio.h>
 
+
 DEFINE_LOG_CATEGORY(LogVAD);
 
 VADSink::VADSink(UVAD *Detector) :Target(Detector) {}
@@ -50,39 +51,47 @@ void UVAD::UseMediaPlayer(UMediaPlayer *Player, int32 &Channels, int32 &SampleRa
 {
 	FScopeLock Lock(&CriticalSection);
 	bActive = false; // Reset
-	if (!Player || !Player->GetPlayer().IsValid() || Player->GetPlayer()->GetAudioTracks().Num() < 1)
+	if (Player != nullptr)
 	{
-		UE_LOG(LogVAD, Error, TEXT("Media Player is invalid"));
-	}
-	else
-	{
-		AudioTrack = Player->GetPlayer()->GetAudioTracks()[0];
+		if (Player->GetPlayer()->GetAudioTracks().Num() < 1)
+		{
+			UE_LOG(LogVAD, Error, TEXT("Media Player is invalid"));
+		}
+		else
+		{
+			AudioTrack = Player->GetPlayer()->GetAudioTracks()[0];
+		}
 	}
 	if (AudioTrack.IsValid())
 	{
 		this->Channels = Channels = AudioTrack->GetNumChannels();
-		this->SamplesPerSecond = SampleRate = AudioTrack->GetSamplesPerSecond();
-		VAD_SAMPLES_PER_SEC = SamplesPerSecond > 32000 ? 32000 : SamplesPerSecond > 16000 ? 16000 : 8000; // webrtc_vad only supports certain rates
+		this->SamplesPerSecond = SampleRate = AudioTrack->GetSamplesPerSecond();	
+		AudioTrack->GetStream().AddSink(Sink);
+	}
+	else
+	{
+		this->Channels = Channels;
+		this->SamplesPerSecond = SampleRate;
+	}
+	VAD_SAMPLES_PER_SEC = SamplesPerSecond > 32000 ? 32000 : SamplesPerSecond > 16000 ? 16000 : 8000; // webrtc_vad only supports certain rates
+	if (Resampler == nullptr)
+	{
+		int32 err;
+		Resampler = speex_resampler_init(1,
+			SamplesPerSecond,
+			VAD_SAMPLES_PER_SEC,
+			5,
+			&err);
+
 		if (Resampler == nullptr)
 		{
-			int32 err;
-			Resampler = speex_resampler_init(1,
-				SamplesPerSecond,
-				VAD_SAMPLES_PER_SEC,
-				5,
-				&err);
-
-			if (Resampler == nullptr)
-			{
-				UE_LOG(LogVAD, Error, TEXT("Couldn't allocate resampler"));
-				return;
-			}
+			UE_LOG(LogVAD, Error, TEXT("Couldn't allocate resampler"));
+			return;
 		}
-		else
-		{
-			speex_resampler_set_rate(Resampler, SamplesPerSecond, VAD_SAMPLES_PER_SEC);
-		}
-		AudioTrack->GetStream().AddSink(Sink);
+	}
+	else
+	{
+		speex_resampler_set_rate(Resampler, SamplesPerSecond, VAD_SAMPLES_PER_SEC);
 	}
 }
 
@@ -108,6 +117,29 @@ void UVAD::StopUsingMediaPlayer(UMediaPlayer *Player)
 void UVAD::ProcessMediaSample(const void* Buffer, uint32 BufferSize, FTimespan Duration, FTimespan Time)
 {
 	FScopeLock Lock(&CriticalSection);
+	if (BufferSize == 0)
+	{
+		if (bActive)
+		{
+			// flush
+			double Now = FPlatformTime::Seconds();
+			if (Now - LastActiveTime > InactivityThreshold)
+			{
+				
+				if (CaptureBuffer.Num() > 0)
+				{
+					TArray<uint8> Copy = CaptureBuffer;
+					CaptureBuffer = TArray<uint8>();
+					OnVoiceInputCaptured().Broadcast(Copy);
+				}
+				bActive = false;
+				OnInactive().Broadcast();
+
+			}
+		}
+		return;
+	}
+	LastActiveTime = FPlatformTime::Seconds();
 	uint32 SamplesAvailableInBuffer = BufferSize / sizeof(int16) / Channels;
 	uint32 SamplesAvailable = InputBuffer.Num() / Channels + SamplesAvailableInBuffer;
 	const uint32 RequiredSamples = SamplesPerSecond / (1000 / VAD_FRAME_MILLIS);

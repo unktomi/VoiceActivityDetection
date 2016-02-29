@@ -2,6 +2,9 @@
 #include "VoiceActivityDetector.h"
 #include "IMediaPlayer.h"
 #include "IMediaAudioTrack.h"
+#include "VoiceModule.h"
+#include "VoiceCapture.h"
+
 
 
 AVoiceActivityDetector::AVoiceActivityDetector(const class FObjectInitializer& PCIP)
@@ -49,6 +52,7 @@ void AVoiceActivityDetector::BeginPlay()
 	Detector->SetMode(Mode);
 	Detector->SetInactivityThreshold(InactivityThresholdInSeconds);
 	Detector->SetFrameLength(VAD_FrameDurationInMilliseconds); 
+	Detector->SetContinuous(bContinuous);
 	if (InputSource != nullptr)
 	{
 		int32 c;
@@ -56,6 +60,17 @@ void AVoiceActivityDetector::BeginPlay()
 		Detector->UseMediaPlayer(InputSource, c, r);
 		Channels = c;
 		SamplesPerSecond = r;
+	}
+	else
+	{
+		if (!VoiceCapture.IsValid())
+		{
+			VoiceCapture = FVoiceModule::Get().CreateVoiceCapture();
+		}
+		VoiceCapture->Start();
+		Channels = 1;
+		SamplesPerSecond = 16000;
+		Detector->UseMediaPlayer(nullptr, Channels, SamplesPerSecond);
 	}
 	Super::BeginPlay();
 }
@@ -70,6 +85,22 @@ void AVoiceActivityDetector::Tick(float DeltaSeconds)
 	{
 		Command.Execute();
 	}
+	if (VoiceCapture.IsValid())
+	{
+		uint32 BytesAvailable = 0;
+		EVoiceCaptureState::Type CaptureState = VoiceCapture->GetCaptureState(BytesAvailable);
+		if (CaptureState == EVoiceCaptureState::Ok && BytesAvailable > 0)
+		{
+			CaptureBuffer.SetNumUninitialized(BytesAvailable);
+			uint32 ReadBytes;
+			VoiceCapture->GetVoiceData(CaptureBuffer.GetData(), BytesAvailable, ReadBytes);	
+			Detector->ProcessMediaSample(CaptureBuffer.GetData(), ReadBytes, 0, 0);
+		}
+		else
+		{
+			Detector->ProcessMediaSample(nullptr, 0, 0, 0);
+		}
+	}
 	Super::Tick(DeltaSeconds);
 
 }
@@ -79,4 +110,8 @@ void AVoiceActivityDetector::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Detector->StopUsingMediaPlayer(InputSource);
 	Super::EndPlay(EndPlayReason);
+	if (VoiceCapture.IsValid())
+	{
+		VoiceCapture->Stop();
+	}
 }

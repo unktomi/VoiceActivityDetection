@@ -60,5 +60,7 @@ private:
 	void HandleVoiceCapture(TArray<uint8> Samples);
 
 	void BroadcastSpeechInputCaptured(TArray<uint8> Samples);
+	TSharedPtr<class IVoiceCapture> VoiceCapture;
+	TArray<uint8> CaptureBuffer;
 
 };

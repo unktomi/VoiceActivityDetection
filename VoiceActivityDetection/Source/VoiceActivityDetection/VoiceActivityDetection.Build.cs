@@ -48,7 +48,7 @@ public class VoiceActivityDetection : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CoreUObject", "Engine", "Slate", "SlateCore", "Media", "MediaAssets"
+				"CoreUObject", "Engine", "Slate", "SlateCore", "Media", "MediaAssets", "Voice"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
